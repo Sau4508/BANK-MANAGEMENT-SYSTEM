@@ -85,13 +85,15 @@ public class login extends JFrame implements ActionListener {
         button3.addActionListener(this);
         add(button3);
 
+//
+//        ImageIcon iii1 = new ImageIcon(ClassLoader.getSystemResource("icons/bg1.jpg"));
+//        Image iii2 = iii1.getImage().getScaledInstance(850,480,Image.SCALE_DEFAULT);
+//        ImageIcon iii3 = new ImageIcon(iii2);
+//        JLabel iiimage = new JLabel(iii3);
+//        iiimage.setBounds(0,0,850,480);
+//        add(iiimage);
 
-        ImageIcon iii1 = new ImageIcon(ClassLoader.getSystemResource("icons/bg1.jpg"));
-        Image iii2 = iii1.getImage().getScaledInstance(850,480,Image.SCALE_DEFAULT);
-        ImageIcon iii3 = new ImageIcon(iii2);
-        JLabel iiimage = new JLabel(iii3);
-        iiimage.setBounds(0,0,850,480);
-        add(iiimage);
+        getContentPane().setBackground(new Color(212, 163, 115));
 
         setLayout(null);
         setSize(850,480);
