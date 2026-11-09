@@ -4,9 +4,11 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Signup extends JFrame {
+public class Signup extends JFrame  implements ActionListener {
 
     JButton next ;
     JRadioButton r1,r2 ,r3,r4 ;
@@ -192,6 +194,7 @@ public class Signup extends JFrame {
         next.setBackground(Color.BLACK);
         next.setForeground(Color.white);
         next.setBounds(640,600,80,29);
+        next.addActionListener(this);
         add(next);
 
 
@@ -203,6 +206,56 @@ public class Signup extends JFrame {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+String formno = first ;
+String name = textName.getText();
+String fname = textFName.getText();
+String dob = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText() ;
+String gender = null ;
+if(r1.isSelected()){
+    gender ="Male";
+
+}else if (r2.isSelected()){
+
+    gender= "Female" ;
+}
+
+String email = textEmail.getText();
+String marital = null ;
+        if(r3.isSelected()){
+            marital ="Married";
+
+        }else if (r4.isSelected()){
+
+            marital= "Unmarried" ;
+        }
+
+        String address = textAD.getText();
+        String city = textCity.getText();
+        String pin = textPin.getText() ;
+        String state = textState.getText() ;
+
+
+        try{
+            if(textName.getText().equals("")){
+
+                JOptionPane.showMessageDialog(null,"fill all the field");
+            }else{
+
+                conn con1 = new conn();
+                String q = "insert into signup values('"+formno+"' ,'"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"', '"+marital+"','"+address+"','"+city+"','"+pin+"','"+state+"')";
+                con1.statement.executeUpdate(q);
+                new signup2(first);
+                setVisible(false);
+            }
+
+        }catch(Exception E){
+
+            E.printStackTrace();
+        }
+    }
 
     static void main(String[] args) {
 
@@ -210,6 +263,3 @@ public class Signup extends JFrame {
         new Signup();
     }
 }
-//254, 250, 224
-//233, 237, 201
-//204, 213, 174
