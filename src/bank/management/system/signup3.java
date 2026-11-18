@@ -87,7 +87,7 @@ buttonGroup.add(r4);
         add(l5);
 
 
-        JLabel l6 = new JLabel("XXXX-XXXX-XXXX-2342");
+        JLabel l6 = new JLabel("XXXX-XXXX-2342");
         l6.setFont(new Font("Raleway",Font.BOLD,15));
         l6.setBounds(300,280,250,20);
         add(l6);
@@ -173,9 +173,9 @@ buttonGroup.add(r4);
         l12.setBounds(700,20,160,25);
         add(l12);
 
-        JLabel l13 = new JLabel();
+        JLabel l13 = new JLabel(formno);
         l13.setFont(new Font("Raleway",Font.BOLD,15));
-        l13.setBounds(760,10,60,25);
+        l13.setBounds(70,20,60,25);
         add(l13);
 
 
@@ -224,10 +224,10 @@ buttonGroup.add(r4);
 
         Random ran = new Random();
         long first7 = (ran.nextLong() % 90000000L) + 1409963000000000L;
-        String card_no = " " + Math.abs(first7);
+        String card_no = "" + Math.abs(first7);
 
         long first3 = (ran.nextLong() % 9000L) + 1000L;
-        String pin = " " + Math.abs(first3);
+        String pin = "" + Math.abs(first3);
 
 
         String Services_Required = "";
@@ -270,7 +270,9 @@ buttonGroup.add(r4);
                     c1.statement.executeUpdate(q1);
                     c1.statement.executeUpdate(q2);
                     JOptionPane.showMessageDialog(null,"Card number :"+card_no+"\n pin :"+pin);
+                    new Deposit(pin);
                     setVisible(false);
+
                 }
 
 

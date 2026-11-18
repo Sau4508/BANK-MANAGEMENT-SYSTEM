@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class login extends JFrame implements ActionListener {
 
@@ -38,27 +39,27 @@ public class login extends JFrame implements ActionListener {
         add(label1);
 
         label2 = new JLabel("Card No :");
-        label2.setFont(new Font("Railway",Font.BOLD,25));
+        label2.setFont(new Font("Railway",Font.BOLD,22));
         label2.setBounds(250,190,370,30);
         add(label2);
 
 
         textFeild1 = new JTextField(15);
         textFeild1.setForeground(Color.gray);
-        textFeild1.setBounds(380,195,200,25);
+        textFeild1.setBounds(380,195,400,22);
         textFeild1.setFont(new Font("Arial",Font.BOLD,15));
         add(textFeild1);
 
 
         label3 = new JLabel("Pin code :");
-        label3.setFont(new Font("Railway",Font.BOLD,25));
+        label3.setFont(new Font("Railway",Font.BOLD,22));
         label3.setBounds(250,230,370,30);
         add(label3);
 
 
         passwordField1 = new JPasswordField(15);
         passwordField1.setForeground(Color.gray);
-        passwordField1.setBounds(380,235,200,25);
+        passwordField1.setBounds(380,235,400,22);
         passwordField1.setFont(new Font("Arial",Font.BOLD,15));
         add(passwordField1);
 
@@ -66,14 +67,14 @@ public class login extends JFrame implements ActionListener {
         button1 =new JButton("Sign In");
         button1.setFont(new Font("Arial",Font.BOLD,14));
         button1.setForeground(Color.black);
-        button1.setBounds(380,280,90,22);
+        button1.setBounds(380,280,180,22);
         button1.addActionListener(this);
         add(button1);
 
         button2 =new JButton("CLEAR");
         button2.setFont(new Font("Arial",Font.BOLD,14));
         button2.setForeground(Color.black);
-        button2.setBounds(485,280,90,22);
+        button2.setBounds(600,280,180,22);
         button2.addActionListener(this);
         add(button2);
 
@@ -81,30 +82,38 @@ public class login extends JFrame implements ActionListener {
         button3 =new JButton("sign up");
         button3.setFont(new Font("Arial",Font.BOLD,14));
         button3.setForeground(Color.black);
-        button3.setBounds(380,320,200,22);
+        button3.setBounds(380,320,400,22);
         button3.addActionListener(this);
         add(button3);
 
-//
-//        ImageIcon iii1 = new ImageIcon(ClassLoader.getSystemResource("icons/bg1.jpg"));
-//        Image iii2 = iii1.getImage().getScaledInstance(850,480,Image.SCALE_DEFAULT);
-//        ImageIcon iii3 = new ImageIcon(iii2);
-//        JLabel iiimage = new JLabel(iii3);
-//        iiimage.setBounds(0,0,850,480);
-//        add(iiimage);
 
         getContentPane().setBackground(new Color(212, 163, 115));
 
         setLayout(null);
         setSize(850,480);
         setLocation(260,150);
+        setUndecorated(true);
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try{
-            if(e.getSource() ==button1){
+            if(e.getSource() == button1){
+
+                conn c = new conn();
+                String cardno = textFeild1.getText();
+                String pin = passwordField1.getText();
+                String q = "select * from login where card_number ='"+cardno+"' and pin ='"+pin+"'";
+                ResultSet resultSet = c.statement.executeQuery(q);
+                if(resultSet.next()){
+                    setVisible(false);
+                    new main_class(pin);
+                }
+                else{
+
+                    JOptionPane.showMessageDialog(null,"Incoorect Card-No and Pin");
+                }
 
             }
             else if(e.getSource() ==button2){
@@ -114,6 +123,9 @@ public class login extends JFrame implements ActionListener {
             }
 
             else if(e.getSource() ==button3){
+
+                new Signup();
+                setVisible(false);
 
             }
         }catch(Exception E){

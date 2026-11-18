@@ -247,7 +247,7 @@ String marital = null ;
                 conn con1 = new conn();
                 String q = "insert into signup values('"+formno+"' ,'"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"', '"+marital+"','"+address+"','"+city+"','"+pin+"','"+state+"')";
                 con1.statement.executeUpdate(q);
-                new signup2(first);
+                new signup2(formno);
                 setVisible(false);
             }
 

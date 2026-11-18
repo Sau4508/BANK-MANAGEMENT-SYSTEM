@@ -17,7 +17,7 @@ public class signup2 extends JFrame implements ActionListener {
 
     JButton next ;
 
-    signup2(String first){
+    signup2(String formno){
 
         super("APPLICATION FORM");
 
@@ -31,7 +31,7 @@ public class signup2 extends JFrame implements ActionListener {
         this.formno = formno;
 
         JLabel l1 = new JLabel("Page 2 :");
-        l1.setFont(new Font("Raleway" , Font.BOLD ,22));
+        l1.setFont(new Font("Raleway" , Font.BOLD ,18));
         l1.setBounds(370,30,600,40);
         add(l1);
 
@@ -173,14 +173,14 @@ public class signup2 extends JFrame implements ActionListener {
 
 
 
-        JLabel l12 = new JLabel("Form No :");
+        JLabel l12 = new JLabel("Form No : ");
         l12.setFont(new Font("Raleway",Font.BOLD,15));
         l12.setBounds(700,10,160,25);
         add(l12);
 
         JLabel l13 = new JLabel(formno);
         l13.setFont(new Font("Raleway",Font.BOLD,15));
-        l13.setBounds(760,10,60,25);
+        l13.setBounds(770,10,60,25);
         add(l13);
 
 
